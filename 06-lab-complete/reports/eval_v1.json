@@ -1,59 +1,59 @@
 {
   "target": "http://localhost:8001",
-  "agent_version": "v2",
+  "agent_version": "v1",
   "dataset": "/vercel/sandbox/repo/06-lab-complete/benchmark-observability/develop/eval/golden_dataset.jsonl",
   "total": 23,
-  "passed": 21,
-  "accuracy": 0.913,
-  "avg_score": 0.913,
+  "passed": 1,
+  "accuracy": 0.0435,
+  "avg_score": 0.0578,
   "errors": 0,
   "latency_ms": {
-    "p50": 195.8,
-    "p95": 217.3
+    "p50": 168.0,
+    "p95": 191.1
   },
-  "total_cost_usd": 0.00076,
-  "avg_tokens": 109.0,
-  "cost_per_correct_usd": 3.619e-05,
+  "total_cost_usd": 0.000411,
+  "avg_tokens": 57.6,
+  "cost_per_correct_usd": 0.00041055,
   "by_category": {
     "benchmark": {
       "total": 3,
-      "passed": 3,
-      "accuracy": 1.0
+      "passed": 0,
+      "accuracy": 0.0
     },
     "cost": {
       "total": 1,
-      "passed": 1,
-      "accuracy": 1.0
+      "passed": 0,
+      "accuracy": 0.0
     },
     "deployment": {
       "total": 3,
-      "passed": 3,
-      "accuracy": 1.0
+      "passed": 1,
+      "accuracy": 0.33
     },
     "docker": {
       "total": 2,
-      "passed": 2,
-      "accuracy": 1.0
+      "passed": 0,
+      "accuracy": 0.0
     },
     "observability": {
       "total": 6,
-      "passed": 6,
-      "accuracy": 1.0
+      "passed": 0,
+      "accuracy": 0.0
     },
     "reliability": {
       "total": 3,
-      "passed": 3,
-      "accuracy": 1.0
+      "passed": 0,
+      "accuracy": 0.0
     },
     "scaling": {
       "total": 3,
-      "passed": 2,
-      "accuracy": 0.67
+      "passed": 0,
+      "accuracy": 0.0
     },
     "security": {
       "total": 2,
-      "passed": 1,
-      "accuracy": 0.5
+      "passed": 0,
+      "accuracy": 0.0
     }
   },
   "results": [
@@ -63,95 +63,119 @@
       "passed": true,
       "score": 1.0,
       "missing_keywords": [],
-      "latency_ms": 204.5,
+      "latency_ms": 186.0,
       "cost_usd": 1.59e-05,
       "tokens": 49,
-      "agent_version": "v2",
+      "agent_version": "v1",
       "answer": "Deployment là quá trình đưa code từ máy bạn lên server để người khác dùng được."
     },
     {
       "id": "docker-01",
       "category": "docker",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 201.4,
-      "cost_usd": 3.57e-05,
-      "tokens": 118,
-      "agent_version": "v2",
-      "answer": "Container đóng gói code cùng dependencies và runtime thành image chạy giống nhau ở mọi môi trường. Docker build image từ Dockerfile, chạy được ở laptop lẫn clou"
+      "passed": false,
+      "score": 0.33,
+      "missing_keywords": [
+        "dependencies",
+        "môi trường"
+      ],
+      "latency_ms": 190.4,
+      "cost_usd": 1.65e-05,
+      "tokens": 56,
+      "agent_version": "v1",
+      "answer": "Container là cách đóng gói app để chạy ở mọi nơi. Build once, run anywhere!"
     },
     {
       "id": "docker-02",
       "category": "docker",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 200.2,
-      "cost_usd": 3.885e-05,
-      "tokens": 127,
-      "agent_version": "v2",
-      "answer": "Multi-stage build tách Dockerfile thành stage builder (cài compiler, build dependencies) và stage runtime chỉ copy kết quả cần thiết. Image cuối nhỏ hơn và ít l"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "builder",
+        "runtime",
+        "nhỏ hơn"
+      ],
+      "latency_ms": 182.4,
+      "cost_usd": 1.65e-05,
+      "tokens": 56,
+      "agent_version": "v1",
+      "answer": "Container là cách đóng gói app để chạy ở mọi nơi. Build once, run anywhere!"
     },
     {
       "id": "probe-01",
       "category": "reliability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 190.4,
-      "cost_usd": 2.295e-05,
-      "tokens": 81,
-      "agent_version": "v2",
-      "answer": "Liveness probe (GET /health) cho biết process còn sống. Nếu fail, platform sẽ restart container."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "còn sống",
+        "restart"
+      ],
+      "latency_ms": 161.8,
+      "cost_usd": 1.695e-05,
+      "tokens": 53,
+      "agent_version": "v1",
+      "answer": "Câu hỏi hay! Điều này phụ thuộc vào kiến trúc hệ thống và yêu cầu cụ thể của bạn."
     },
     {
       "id": "probe-02",
       "category": "reliability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 165.2,
-      "cost_usd": 3.33e-05,
-      "tokens": 111,
-      "agent_version": "v2",
-      "answer": "Readiness probe (GET /ready) cho biết instance sẵn sàng nhận traffic. Nếu fail, load balancer ngừng route traffic tới instance đó nhưng không restart."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "load balancer",
+        "traffic",
+        "không restart"
+      ],
+      "latency_ms": 170.3,
+      "cost_usd": 1.56e-05,
+      "tokens": 53,
+      "agent_version": "v1",
+      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
     },
     {
       "id": "reliability-01",
       "category": "reliability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 170.0,
-      "cost_usd": 3.48e-05,
-      "tokens": 115,
-      "agent_version": "v2",
-      "answer": "Graceful shutdown: khi nhận SIGTERM, app ngừng nhận request mới, chờ các request in-flight hoàn thành rồi mới thoát, nên không làm mất request của người dùng."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "sigterm",
+        "in-flight",
+        "request mới"
+      ],
+      "latency_ms": 152.1,
+      "cost_usd": 1.995e-05,
+      "tokens": 61,
+      "agent_version": "v1",
+      "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     },
     {
       "id": "config-01",
       "category": "deployment",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 179.5,
-      "cost_usd": 3.795e-05,
-      "tokens": 124,
-      "agent_version": "v2",
-      "answer": "12-Factor App yêu cầu lưu config trong biến môi trường (environment variables), không hardcode secret trong code, giúp cùng một image chạy được ở dev, staging v"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "biến môi trường",
+        "hardcode"
+      ],
+      "latency_ms": 150.0,
+      "cost_usd": 1.755e-05,
+      "tokens": 57,
+      "agent_version": "v1",
+      "answer": "Câu hỏi hay! Điều này phụ thuộc vào kiến trúc hệ thống và yêu cầu cụ thể của bạn."
     },
     {
       "id": "security-01",
       "category": "security",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 207.1,
-      "cost_usd": 3.66e-05,
-      "tokens": 121,
-      "agent_version": "v2",
-      "answer": "Rate limiting giới hạn số request mỗi client trong một cửa sổ thời gian, ví dụ 10 req/phút. Vượt giới hạn thì trả HTTP 429 Too Many Requests kèm header Retry-Af"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "429",
+        "retry-after"
+      ],
+      "latency_ms": 186.1,
+      "cost_usd": 2.025e-05,
+      "tokens": 63,
+      "agent_version": "v1",
+      "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     },
     {
       "id": "security-02",
@@ -163,35 +187,42 @@
         "hết hạn",
         "chữ ký"
       ],
-      "latency_ms": 195.8,
+      "latency_ms": 167.2,
       "cost_usd": 1.95e-05,
       "tokens": 58,
-      "agent_version": "v2",
+      "agent_version": "v1",
       "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     },
     {
       "id": "scaling-01",
       "category": "scaling",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 198.4,
-      "cost_usd": 3.24e-05,
-      "tokens": 108,
-      "agent_version": "v2",
-      "answer": "Stateless nghĩa là instance không giữ state trong memory; session được lưu ở Redis. Nhờ vậy có thể scale ngang nhiều instance sau load balancer."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "redis",
+        "session",
+        "load balancer"
+      ],
+      "latency_ms": 143.8,
+      "cost_usd": 1.74e-05,
+      "tokens": 56,
+      "agent_version": "v1",
+      "answer": "Câu hỏi hay! Điều này phụ thuộc vào kiến trúc hệ thống và yêu cầu cụ thể của bạn."
     },
     {
       "id": "scaling-02",
       "category": "scaling",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 193.4,
-      "cost_usd": 2.685e-05,
-      "tokens": 95,
-      "agent_version": "v2",
-      "answer": "Load balancer như Nginx phân phối request tới nhiều instance theo round-robin, và bỏ qua instance không healthy."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "round-robin",
+        "instance"
+      ],
+      "latency_ms": 196.1,
+      "cost_usd": 2.025e-05,
+      "tokens": 63,
+      "agent_version": "v1",
+      "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     },
     {
       "id": "scaling-03",
@@ -203,148 +234,188 @@
         "memory",
         "custom metrics"
       ],
-      "latency_ms": 206.0,
-      "cost_usd": 1.575e-05,
-      "tokens": 54,
-      "agent_version": "v2",
-      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
+      "latency_ms": 145.7,
+      "cost_usd": 1.995e-05,
+      "tokens": 61,
+      "agent_version": "v1",
+      "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     },
     {
       "id": "bench-01",
       "category": "benchmark",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 188.9,
-      "cost_usd": 3.195e-05,
-      "tokens": 108,
-      "agent_version": "v2",
-      "answer": "Percentile p95 là ngưỡng mà 95% request nhanh hơn. Latency trung bình (average) che giấu tail latency, nên SLO thường đặt theo p95 hoặc p99."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "95%",
+        "tail latency",
+        "p99"
+      ],
+      "latency_ms": 152.8,
+      "cost_usd": 1.77e-05,
+      "tokens": 58,
+      "agent_version": "v1",
+      "answer": "Câu hỏi hay! Điều này phụ thuộc vào kiến trúc hệ thống và yêu cầu cụ thể của bạn."
     },
     {
       "id": "bench-02",
       "category": "benchmark",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 220.4,
-      "cost_usd": 3.57e-05,
-      "tokens": 118,
-      "agent_version": "v2",
-      "answer": "Eval chất lượng dùng golden dataset: bộ câu hỏi có đáp án mong đợi. Chạy eval trước mỗi lần deploy để bắt regression, ví dụ accuracy giảm so với phiên bản trước"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "đáp án",
+        "regression"
+      ],
+      "latency_ms": 179.3,
+      "cost_usd": 1.695e-05,
+      "tokens": 56,
+      "agent_version": "v1",
+      "answer": "Deployment là quá trình đưa code từ máy bạn lên server để người khác dùng được."
     },
     {
       "id": "obs-01",
       "category": "observability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 206.4,
-      "cost_usd": 4.725e-05,
-      "tokens": 150,
-      "agent_version": "v2",
-      "answer": "Prometheus pull metrics bằng cách scrape endpoint /metrics theo chu kỳ. Counter chỉ tăng (đếm request), Gauge lên xuống (request đang xử lý), Histogram chia lat"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "pull",
+        "scrape",
+        "/metrics"
+      ],
+      "latency_ms": 180.5,
+      "cost_usd": 2.025e-05,
+      "tokens": 63,
+      "agent_version": "v1",
+      "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     },
     {
       "id": "obs-02",
       "category": "observability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 217.8,
-      "cost_usd": 4.755e-05,
-      "tokens": 152,
-      "agent_version": "v2",
-      "answer": "Prometheus pull metrics bằng cách scrape endpoint /metrics theo chu kỳ. Counter chỉ tăng (đếm request), Gauge lên xuống (request đang xử lý), Histogram chia lat"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "chỉ tăng",
+        "lên xuống",
+        "bucket"
+      ],
+      "latency_ms": 138.2,
+      "cost_usd": 1.635e-05,
+      "tokens": 58,
+      "agent_version": "v1",
+      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
     },
     {
       "id": "obs-03",
       "category": "observability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 186.6,
-      "cost_usd": 3.645e-05,
-      "tokens": 123,
-      "agent_version": "v2",
-      "answer": "Label có cardinality cao (user_id, request_id, câu hỏi) làm số time series bùng nổ và Prometheus tốn RAM. Chỉ dùng label có ít giá trị như route, status, model."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "time series",
+        "ram"
+      ],
+      "latency_ms": 168.0,
+      "cost_usd": 1.845e-05,
+      "tokens": 63,
+      "agent_version": "v1",
+      "answer": "Câu hỏi hay! Điều này phụ thuộc vào kiến trúc hệ thống và yêu cầu cụ thể của bạn."
     },
     {
       "id": "obs-04",
       "category": "observability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 176.4,
-      "cost_usd": 3.975e-05,
-      "tokens": 127,
-      "agent_version": "v2",
-      "answer": "Distributed tracing ghi lại một request đi qua những bước nào. Mỗi bước là một span có thời gian bắt đầu, kết thúc và attributes. OpenTelemetry thu thập trace v"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "span",
+        "attributes",
+        "thời gian"
+      ],
+      "latency_ms": 189.3,
+      "cost_usd": 1.545e-05,
+      "tokens": 52,
+      "agent_version": "v1",
+      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
     },
     {
       "id": "obs-05",
       "category": "observability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 178.1,
-      "cost_usd": 4.05e-05,
-      "tokens": 132,
-      "agent_version": "v2",
-      "answer": "Distributed tracing ghi lại một request đi qua những bước nào. Mỗi bước là một span có thời gian bắt đầu, kết thúc và attributes. OpenTelemetry thu thập trace v"
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "trace",
+        "jaeger"
+      ],
+      "latency_ms": 191.2,
+      "cost_usd": 1.62e-05,
+      "tokens": 57,
+      "agent_version": "v1",
+      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
     },
     {
       "id": "obs-06",
       "category": "observability",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 186.0,
-      "cost_usd": 3.195e-05,
-      "tokens": 108,
-      "agent_version": "v2",
-      "answer": "Structured logging ghi log dạng JSON với các field cố định (timestamp, level, request_id, trace_id) để dễ tìm kiếm, lọc và liên kết với trace."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "request_id",
+        "trace_id",
+        "lọc"
+      ],
+      "latency_ms": 163.7,
+      "cost_usd": 1.59e-05,
+      "tokens": 55,
+      "agent_version": "v1",
+      "answer": "Tôi là AI agent được deploy lên cloud. Câu hỏi của bạn đã được nhận."
     },
     {
       "id": "slo-01",
       "category": "benchmark",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 187.6,
-      "cost_usd": 3.48e-05,
-      "tokens": 115,
-      "agent_version": "v2",
-      "answer": "SLI là chỉ số đo được (vd tỉ lệ request thành công), SLO là mục tiêu cho SLI (vd 99.5% trong 30 ngày). Error budget là phần được phép lỗi còn lại: 100% - SLO."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "sli",
+        "100%"
+      ],
+      "latency_ms": 188.1,
+      "cost_usd": 1.98e-05,
+      "tokens": 60,
+      "agent_version": "v1",
+      "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     },
     {
       "id": "cost-01",
       "category": "cost",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 204.7,
-      "cost_usd": 3.33e-05,
-      "tokens": 111,
-      "agent_version": "v2",
-      "answer": "Chi phí LLM tính theo token: cost = input_tokens x giá input + output_tokens x giá output. Cần theo dõi cost theo thời gian thực và đặt budget alert."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "token",
+        "input",
+        "output"
+      ],
+      "latency_ms": 152.9,
+      "cost_usd": 1.755e-05,
+      "tokens": 57,
+      "agent_version": "v1",
+      "answer": "Câu hỏi hay! Điều này phụ thuộc vào kiến trúc hệ thống và yêu cầu cụ thể của bạn."
     },
     {
       "id": "cloud-01",
       "category": "deployment",
-      "passed": true,
-      "score": 1.0,
-      "missing_keywords": [],
-      "latency_ms": 212.8,
-      "cost_usd": 3.015e-05,
-      "tokens": 102,
-      "agent_version": "v2",
-      "answer": "Cloud Run, Railway, Render là nền tảng chạy container managed: tự scale, tự cấp HTTPS, bạn chỉ cần cung cấp image và biến môi trường."
+      "passed": false,
+      "score": 0.0,
+      "missing_keywords": [
+        "container",
+        "tự scale",
+        "https"
+      ],
+      "latency_ms": 134.8,
+      "cost_usd": 1.965e-05,
+      "tokens": 59,
+      "agent_version": "v1",
+      "answer": "Đây là câu trả lời từ AI agent (mock). Trong production, đây sẽ là response từ OpenAI/Anthropic."
     }
   ],
   "quality_gate": {
     "min_accuracy": 0.8,
     "regressions": [],
-    "passed": true
+    "passed": false
   }
 }

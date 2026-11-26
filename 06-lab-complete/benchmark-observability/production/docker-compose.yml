@@ -31,12 +31,8 @@ services:
       # OpenTelemetry → Jaeger (OTLP/HTTP)
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://jaeger:4318
       - TRACING_ENABLED=true
-    deploy:
-      replicas: 2
-      resources:
-        limits:
-          cpus: "0.5"
-          memory: 256M
+    # scale bằng `docker compose up -d --scale agent=N` (deploy.resources là cú pháp
+    # Swarm, gây lỗi cgroup threaded trên Docker 29 nên không dùng ở đây)
     depends_on:
       - jaeger
     restart: unless-stopped

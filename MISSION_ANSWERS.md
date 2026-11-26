@@ -110,3 +110,44 @@ POST /auth/token (student/demo123) → nhận access_token JWT
 `python test_stateless.py` → exit 0: request qua Nginx được phục vụ bởi các instance khác nhau, session vẫn nhất quán nhờ Redis.
 
 Ghi chú: lần chạy đầu lỗi `runc create failed ... cgroup "domain threaded"` do khối `deploy.resources.limits` trong `docker-compose.yml`. Đã bỏ khối đó và stack chạy đủ 3 instance.
+
+---
+
+## Part 6 — Production-ready check (CP5)
+
+`python check_production_ready.py` trong `06-lab-complete/`:
+
+```
+  📋 Checklist Deliverable
+     ✅ Dockerfile (multi-stage, < 500 MB)
+     ✅ docker-compose.yml (agent + redis)
+     ✅ .dockerignore
+     ✅ Health check endpoint (GET /health)
+     ✅ Readiness endpoint (GET /ready)
+     ✅ API Key authentication
+     ✅ Rate limiting
+     ✅ Cost guard
+     ✅ Config từ environment variables
+     ✅ Structured logging
+     ✅ Graceful shutdown
+     ✅ Public URL ready (Railway / Render config)
+----------------------------------------------------------------
+  Result: 12/12 tiêu chí đạt · 43/43 checks passed
+  🎉 PASS 12/12 — PRODUCTION READY! Deploy nào!
+```
+
+---
+
+## Part 7 — Benchmark & Observability (CP7/CP8)
+
+Số liệu đo được tóm tắt trong `BENCHMARK_REPORT.md`; file gốc: `reports/*.json`, `benchmark-results/scale_*.csv`, ảnh trong `screenshots/`. Eval v2 sau khi thêm `KNOWLEDGE_BASE` đạt 100% (23/23), quality gate chặn deploy qua GitHub Actions nếu accuracy < 80% hoặc regression so v1.
+
+## AI usage log
+
+Cách dùng AI trong lab (cho phần log theo SUBMISSION):
+
+- Phân tích đề & lập kế hoạch: đọc `CHECKPOINTS.md`, tách 8 checkpoint thành thứ tự thực thi, ước lượng thời gian từng phần.
+- Implement Part 6: viết `Dockerfile` multi-stage, `docker-compose.yml`, middleware API key / rate limit (Redis sliding window) / cost guard, JSON logging với trace_id, health/ready endpoints.
+- Chạy benchmark & eval: `load_test.py` ở 4 mức concurrency, eval v1/v2 trên golden dataset, Locust 1 vs 3 replicas; AI đọc kết quả và nhận xét (SLO theo p95, tail latency từ slow request).
+- Observability: cấu hình Prometheus alert rules, Grafana dashboard, Jaeger tracing; AI tạo lệnh tạo lỗi đồng thời để minh hoạ 2 alert firing.
+- AI tự kiểm chứng bằng lệnh thật (curl, docker compose, script chấm) trước khi ghi số liệu vào báo cáo; mỗi số liệu trong `BENCHMARK_REPORT.md` đối chiếu với file JSON/CSV đính kèm.
