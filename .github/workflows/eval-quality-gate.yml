@@ -1,0 +1,46 @@
+name: Quality gate — eval chặn deploy
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Cài dependencies
+        run: pip install -r 06-lab-complete/benchmark-observability/develop/requirements.txt
+
+      - name: Khởi động Redis
+        run: |
+          sudo apt-get install -y redis-server
+          sudo redis-server --daemonize yes
+          redis-cli ping
+
+      - name: Khởi động agent v2
+        working-directory: 06-lab-complete/benchmark-observability/develop
+        run: |
+          AGENT_VERSION=v2 python3 -m uvicorn app:app --port 8002 &
+          for i in $(seq 1 20); do curl -sf http://localhost:8002/health && break; sleep 1; done
+
+      - name: Chạy eval — quality gate (accuracy ≥ 80%, không regression)
+        working-directory: 06-lab-complete/benchmark-observability/develop
+        run: |
+          mkdir -p reports
+          python3 eval/run_eval.py --url http://localhost:8002 \
+            --out reports/eval_pr.json \
+            --baseline reports/eval_v1.json
+
+      - name: Lưu eval report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: eval-report
+          path: 06-lab-complete/benchmark-observability/develop/reports/eval_pr.json
